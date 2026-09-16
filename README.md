@@ -47,18 +47,20 @@ Then log out, pick **Hyprland** from the gear menu at GDM, and log back in.
 ./install.sh --config-only   # skip package install
 ./install.sh --no-copr       # don't add the COPR
 ./install.sh --copr dtutila/hyprland # use an alternative COPR
+./install.sh --omarchy-apps   # install official Omarchy utilities too
 ./install.sh --no-font       # skip nerd font download
 ./install.sh --no-shell-init # don't touch bashrc/zshrc
 ```
 
 ### Optional: Omarchy Companion Binaries
 
-To install the first-party Omarchy utilities (`aether`, `ttfx`, `herdr`, `hyprland-preview-share-picker`, etc.) on Fedora 44:
+To install the first-party Omarchy utilities (`hyprland-preview-share-picker` for thumbnail screen sharing, `omacalc`, `omawrite`, `herdr`, etc.) directly on Fedora 44:
 
 ```bash
 sudo dnf copr enable whelanh/omarchy -y
-sudo dnf install -y aether cliamp herdr hyprland-preview-share-picker omacalc omacut omawrite tensaku try ttfx
+sudo dnf install -y hyprland-preview-share-picker omacalc omawrite omacut herdr ttfx
 ```
+*(Or just pass `--omarchy-apps` to `./install.sh`)*
 
 ## Keybindings
 
@@ -70,6 +72,7 @@ Everything is `SUPER` + something. Vim-style (`h/j/k/l`) for window focus.
 |-----|-------------|
 | `Super + Enter` | Terminal |
 | `Super + Space` | App launcher |
+| `Super + C` | Calculator (`omacalc`) |
 | `Super + Q` | Kill window |
 | `Super + L` | Lock |
 | `Super + E` | File manager |
@@ -100,6 +103,7 @@ config/
     hyprland.conf       # main config
     hyprlock.conf       # lock screen
     hypridle.conf       # idle timeouts
+    xdph.conf           # screen sharing picker config
   waybar/
     config.jsonc        # bar layout
     style.css           # bar styling
