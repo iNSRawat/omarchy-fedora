@@ -92,17 +92,6 @@ sudo dnf install -y hyprland-preview-share-picker omacalc omawrite omacut herdr 
 ```
 *(Or just pass `--omarchy-apps` to `./install.sh`)*
 
-### Optional: Get Shit Done (GSD) for Antigravity
-
-To enable the [GSD (Get Shit Done)](https://github.com/toonight/get-shit-done-for-antigravity) workflow locally for Antigravity:
-
-```bash
-git clone --depth 1 https://github.com/toonight/get-shit-done-for-antigravity.git /tmp/gsd
-cp -r /tmp/gsd/{.agent,.agents,.gsd,adapters,docs,PROJECT_RULES.md,GSD-STYLE.md,model_capabilities.yaml} .
-rm -rf /tmp/gsd
-```
-*(GSD files are ignored by `.gitignore` in this repo so your local workflows remain local and won't be pushed to GitHub).*
-
 ## Keybindings
 
 Everything is `SUPER` + something. Vim-style (`h/j/k/l`) for window focus.
