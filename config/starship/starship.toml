@@ -1,0 +1,96 @@
+# starship.toml — powerline prompt, Tokyo Night
+# https://starship.rs/config/
+
+format = """
+[](fg:#7aa2f7)\
+$os\
+[](bg:#bb9af7 fg:#7aa2f7)\
+$directory\
+[](fg:#bb9af7 bg:#9ece6a)\
+$git_branch\
+$git_status\
+[](fg:#9ece6a bg:#e0af68)\
+$nodejs\
+$python\
+$rust\
+$golang\
+$java\
+$ruby\
+[](fg:#e0af68)\
+$character\
+"""
+
+add_newline = true
+
+[os]
+disabled = false
+style = "bg:#7aa2f7 fg:#1a1b26"
+format = "[ $symbol ]($style)"
+
+[os.symbols]
+Fedora = ""
+Linux = "🐧"
+Macos = ""
+Windows = ""
+
+[directory]
+style = "bg:#bb9af7 fg:#1a1b26"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = " "
+"Pictures" = " "
+"Projects" = " "
+"~" = " "
+
+[git_branch]
+symbol = ""
+style = "bg:#9ece6a fg:#1a1b26"
+format = "[ $symbol $branch ]($style)"
+
+[git_status]
+style = "bg:#9ece6a fg:#1a1b26"
+format = "[$all_status$ahead_behind ]($style)"
+
+[nodejs]
+symbol = ""
+style = "bg:#e0af68 fg:#1a1b26"
+format = "[ $symbol ($version) ]($style)"
+detect_files = ["package.json", ".node-version"]
+
+[python]
+symbol = ""
+style = "bg:#e0af68 fg:#1a1b26"
+format = "[ $symbol ($version) ]($style)"
+
+[rust]
+symbol = ""
+style = "bg:#e0af68 fg:#1a1b26"
+format = "[ $symbol ($version) ]($style)"
+
+[golang]
+symbol = ""
+style = "bg:#e0af68 fg:#1a1b26"
+format = "[ $symbol ($version) ]($style)"
+
+[java]
+symbol = ""
+style = "bg:#e0af68 fg:#1a1b26"
+format = "[ $symbol ($version) ]($style)"
+
+[ruby]
+symbol = ""
+style = "bg:#e0af68 fg:#1a1b26"
+format = "[ $symbol ($version) ]($style)"
+
+[character]
+success_symbol = "[ ❯](bold fg:#9ece6a)"
+error_symbol = "[ ❯](bold fg:#f7768e)"
+
+[cmd_duration]
+min_time = 2_000
+format = " took [$duration](bold fg:#e0af68)"

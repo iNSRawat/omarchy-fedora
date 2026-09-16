@@ -1,0 +1,123 @@
+# rofi config — Tokyo Night launcher
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    icon-theme: "Papirus-Dark";
+    terminal: "foot";
+    drun-display-format: "{name}";
+    display-drun: "  Apps";
+    display-run: "  Run";
+    display-window: "  Windows";
+    sidebar-mode: true;
+}
+
+@theme "/dev/null"
+
+* {
+    font: "JetBrains Mono Nerd Font 12";
+
+    bg:         #1a1b26cc;
+    bg-alt:     #24283b;
+    bg-sel:     #364a82;
+    fg:         #c0caf5;
+    fg-alt:     #565f89;
+    accent:     #7aa2f7;
+    urgent:     #f7768e;
+
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    width: 600px;
+    padding: 5px;
+    background-color: @bg;
+    border: 2px solid;
+    border-color: @accent;
+    border-radius: 12px;
+}
+
+mainbox {
+    padding: 12px;
+}
+
+inputbar {
+    children: [ prompt, textbox-prompt-colon, entry, case-indicator ];
+    padding: 10px 14px;
+    background-color: @bg-alt;
+    border-radius: 8px;
+    margin: 0 0 10px 0;
+}
+
+prompt {
+    text-color: @accent;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: " ";
+    text-color: @accent;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+}
+
+listbox {
+    spacing: 5px;
+    padding: 5px 0;
+}
+
+element {
+    padding: 8px 12px;
+    border-radius: 6px;
+    spacing: 10px;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @bg-sel;
+    text-color: @fg;
+}
+
+element alternate.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element-icon {
+    size: 24px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+mode-switcher {
+    spacing: 5px;
+    margin: 10px 0 0 0;
+}
+
+button {
+    padding: 8px;
+    background-color: @bg-alt;
+    text-color: @fg-alt;
+    border-radius: 6px;
+}
+
+button selected {
+    background-color: @accent;
+    text-color: @bg-alt;
+}
+
+scrollbar {
+    handle-width: 4px;
+    handle-color: @accent;
+    border-radius: 4px;
+}

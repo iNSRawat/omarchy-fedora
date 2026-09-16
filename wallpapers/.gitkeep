@@ -1,0 +1,3 @@
+# This directory holds wallpapers.
+# Drop your wallpapers here and update hyprland.conf:
+#   exec-once = swaybg -i ~/path/to/wallpaper.jpg -m fill

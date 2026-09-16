@@ -1,0 +1,21 @@
+# ---- OS / editor noise -------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# ---- Local install artefacts ------------------------------------------
+# Created by install.sh when it backs up pre-existing configs.
+/.backup/
+# Generated default wallpaper (re-create with: make wallpaper)
+config/wallpapers/*.png
+
+# ---- Scripts / tooling ------------------------------------------------
+*.log
+.cache/
+.shellcheckrc.local

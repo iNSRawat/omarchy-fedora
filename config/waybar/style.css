@@ -1,0 +1,79 @@
+/* waybar — Tokyo Night, floating pills on transparent bar */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "JetBrains Mono", monospace;
+    font-size: 13px;
+    font-weight: bold;
+    min-height: 0;
+}
+
+window#waybar {
+    background: transparent;
+    color: #c0caf5;
+}
+
+/* every module gets its own pill */
+#workspaces,
+#window,
+#clock,
+#pulseaudio,
+#cpu,
+#memory,
+#battery,
+#tray {
+    background-color: #1a1b26;
+    padding: 2px 14px;
+    margin: 3px 0;
+    border-radius: 8px;
+    border: 1px solid #24283b;
+}
+
+#workspaces {
+    padding: 0 4px;
+}
+
+#workspaces button {
+    padding: 2px 8px;
+    color: #565f89;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+#workspaces button:hover {
+    background: #24283b;
+    color: #c0caf5;
+}
+
+#workspaces button.active {
+    color: #7aa2f7;
+    background-color: #24283b;
+}
+
+#workspaces button.urgent {
+    color: #f7768e;
+}
+
+#window {
+    color: #a9b1d6;
+    font-weight: normal;
+}
+
+#clock {
+    color: #7aa2f7;
+    border-color: #3b4261;
+}
+
+#pulseaudio { color: #7dcfff; }
+#pulseaudio.muted { color: #565f89; }
+
+#cpu { color: #bb9af7; }
+#memory { color: #9ece6a; }
+
+#battery { color: #e0af68; }
+#battery.charging { color: #9ece6a; }
+#battery.warning:not(.charging) { color: #e0af68; }
+#battery.critical:not(.charging) { color: #f7768e; }
+
+#tray { padding: 2px 10px; }
