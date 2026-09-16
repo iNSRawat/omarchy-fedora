@@ -19,7 +19,7 @@ NERD_FONT_URL="https://github.com/ryanoasis/nerd-fonts/releases/latest/download/
 CONFIG_DIRS=(hypr waybar rofi foot dunst)
 STANDALONE_CONFIGS=(starship/starship.toml)
 
-DEFAULT_COPR="solopasha/hyprland"
+DEFAULT_COPR="lionheartp/Hyprland"
 
 HYPR_PACKAGES=(hyprland hyprlock hypridle xdg-desktop-portal-hyprland)
 
@@ -163,21 +163,34 @@ find_dnf() {
 
 enable_copr() {
   (( DO_COPR )) || return 0
-  info "enabling COPR: $COPR"
-  run "${SUDO[@]}" "$DNF" -y copr enable "$COPR" \
-    || warn "couldn't enable COPR — might already be set up, or try --no-copr"
+  info "enabling Hyprland COPR: $COPR"
+  if ! run "${SUDO[@]}" "$DNF" -y copr enable "$COPR"; then
+    warn "couldn't enable $COPR on this Fedora release"
+    for fallback in "dtutila/hyprland" "lionheartp/Hyprland"; do
+      if [[ "$COPR" != "$fallback" ]]; then
+        info "trying fallback COPR: $fallback"
+        if run "${SUDO[@]}" "$DNF" -y copr enable "$fallback"; then
+          COPR="$fallback"
+          ok "enabled fallback COPR: $fallback"
+          return 0
+        fi
+      fi
+    done
+    die "failed to enable a working Hyprland COPR repository"
+  fi
 }
 
 install_packages() {
   (( DO_PACKAGES )) || { warn "skipping packages (--config-only)"; return 0; }
 
-  info "installing packages"
+  info "installing core packages"
   run "${SUDO[@]}" "$DNF" -y install "${CORE_PACKAGES[@]}" \
-    || warn "some packages failed"
+    || warn "some core packages failed"
 
-  info "installing Hyprland"
-  run "${SUDO[@]}" "$DNF" -y install "${HYPR_PACKAGES[@]}" \
-    || warn "hyprland install failed — check '$DNF search hyprland'"
+  info "installing Hyprland stack"
+  if ! run "${SUDO[@]}" "$DNF" -y install "${HYPR_PACKAGES[@]}"; then
+    die "Hyprland packages failed to install! Run: sudo $DNF copr enable $COPR"
+  fi
 
   info "installing extras"
   run "${SUDO[@]}" "$DNF" -y install "${EXTRA_PACKAGES[@]}" \
@@ -362,10 +375,16 @@ install_nerd_font
 deploy_configs
 deploy_scripts
 deploy_wallpapers
-setup_starship
+  # verify session registered with GDM
+  if [[ -f /usr/share/wayland-sessions/hyprland.desktop ]]; then
+    ok "Hyprland session registered in /usr/share/wayland-sessions/"
+  else
+    warn "warning: /usr/share/wayland-sessions/hyprland.desktop was not found"
+    warn "Hyprland might not appear in GDM. Run: sudo $DNF reinstall hyprland"
+  fi
 
-echo ""
-echo "  ${GREEN}done!${RST}"
+  echo ""
+  echo "  ${GREEN}done!${RST}"
 echo ""
 echo "  Log out, pick Hyprland at the login screen, log back in."
 echo "  Super+Enter for terminal, Super+Space for launcher."

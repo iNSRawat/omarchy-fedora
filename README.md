@@ -102,11 +102,16 @@ Everything is `SUPER` + something. Vim-style (`h/j/k/l`) for window focus.
 |-----|-------------|
 | `Super + Enter` | Terminal |
 | `Super + Space` | App launcher |
+| `Super + G` | GSD ("Get Shit Done") agent session |
 | `Super + C` | Calculator (`omacalc`) |
 | `Super + Q` | Kill window |
 | `Super + L` | Lock |
 | `Super + E` | File manager |
 | `Super + Shift + E` | Quit Hyprland |
+
+### GSD ("Get Shit Done") Workflow
+
+Omarchy emphasizes an agentic, developer-first workflow. Press **`Super + G`** anytime to launch a centered, floating GSD terminal tailored for AI coding agents (`get-shit-done-cc`, Claude Code, etc.), quick scratchpads, and git operations. You can also run `~/.config/hypr/scripts/gsd.sh` directly.
 
 ### Windows
 
@@ -150,6 +155,7 @@ scripts/
   volume.sh
   brightness.sh
   power-menu.sh
+  gsd.sh
 ```
 
 ## Customization
