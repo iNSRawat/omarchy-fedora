@@ -25,6 +25,7 @@ Needs Fedora 44 (or 41+), sudo, internet.
 ```bash
 git clone https://github.com/iNSRawat/omarchy-fedora.git
 cd omarchy-fedora
+chmod +x install.sh
 ./install.sh
 ```
 
