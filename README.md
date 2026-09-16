@@ -1,6 +1,7 @@
 # Omarchy-Fedora
 
 Hyprland rice for Fedora 44, inspired by [Omarchy](https://omarchy.com/). Tokyo Night everywhere, vim-style window nav, minimal and keyboard-driven.
+Hyprland rice for Fedora 44, inspired by [Omarchy](https://omarchy.org/). Tokyo Night everywhere, vim-style window nav, minimal and keyboard-driven.
 
 ![Fedora 44](https://img.shields.io/badge/Fedora-44-blue?logo=fedora)
 
@@ -161,8 +162,8 @@ Removes the symlinks, offers to restore your backed-up configs, and optionally r
 
 ## Credits
 
-- [Omarchy](https://omarchy.com/) for the original vision
-- [Hyprland](https://hyprland.org/)
+- [Omarchy](https://omarchy.org/) for the original vision
+- [Hyprland](https://hypr.land/)
 - [Tokyo Night](https://github.com/enkia/tokyo-night-vscode-theme) color scheme
 
 ## License
