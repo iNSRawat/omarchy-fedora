@@ -21,7 +21,7 @@ STANDALONE_CONFIGS=(starship/starship.toml)
 
 DEFAULT_COPR="lionheartp/Hyprland"
 
-HYPR_PACKAGES=(hyprland hyprlock hypridle xdg-desktop-portal-hyprland)
+HYPR_PACKAGES=(hyprland hyprlock hypridle xdg-desktop-portal-hyprland hyprpolkitagent)
 
 CORE_PACKAGES=(
   waybar rofi-wayland foot starship dunst swaybg
