@@ -50,12 +50,21 @@ chmod +x install.sh
 *(Or `./install.sh -y` to run unattended without prompts)*
 
 What this does automatically:
-- Enables the Hyprland COPR repo (`solopasha/hyprland`)
-- Installs Hyprland, Waybar, Rofi, Foot, Starship, Dunst, and supporting Wayland utilities via `dnf5`
+- Enables the Hyprland COPR repo (`lionheartp/Hyprland`) built for Fedora 44
+- Installs Hyprland, Waybar, Rofi, Foot, Starship, Dunst, `hyprpolkitagent`, `hyprland-guiutils`, and Wayland utilities via `dnf5`
 - Backs up your existing configs to `~/.config/omarchy-fedora-backup/`
 - Symlinks the configs from this repo into `~/.config/`
 - Downloads and installs JetBrainsMono Nerd Font
 - Sets up the Starship prompt in your `~/.bashrc` (or `~/.zshrc`)
+
+### Direct DNF Package Install
+
+If you want to install the core Hyprland stack directly with DNF:
+
+```bash
+sudo dnf5 copr enable -y lionheartp/Hyprland
+sudo dnf5 install -y hyprland hyprlock hypridle xdg-desktop-portal-hyprland hyprpolkitagent hyprland-guiutils
+```
 
 **5. Log into Hyprland**
 1. Save any open work and log out of your current session.
@@ -82,16 +91,6 @@ What this does automatically:
 ./install.sh --no-shell-init # don't touch bashrc/zshrc
 ```
 
-### Optional: Omarchy Companion Binaries
-
-To install the first-party Omarchy utilities (`hyprland-preview-share-picker` for thumbnail screen sharing, `omacalc`, `omawrite`, `herdr`, etc.) directly on Fedora 44:
-
-```bash
-sudo dnf copr enable whelanh/omarchy -y
-sudo dnf install -y hyprland-preview-share-picker omacalc omawrite omacut herdr ttfx
-```
-*(Or just pass `--omarchy-apps` to `./install.sh`)*
-
 ## Keybindings
 
 Everything is `SUPER` + something. Vim-style (`h/j/k/l`) for window focus.
@@ -102,7 +101,7 @@ Everything is `SUPER` + something. Vim-style (`h/j/k/l`) for window focus.
 |-----|-------------|
 | `Super + Enter` | Terminal |
 | `Super + Space` | App launcher |
-| `Super + C` | Calculator (`omacalc`) |
+| `Super + C` | Calculator (`gnome-calculator`) |
 | `Super + Q` | Kill window |
 | `Super + L` | Lock |
 | `Super + E` | File manager |
@@ -207,9 +206,7 @@ Removes the symlinks, offers to restore your backed-up configs, and optionally r
 
 - [Omarchy](https://omarchy.org/) for the original vision
 - [Hyprland](https://hypr.land/)
-- [solopasha/hyprlandRPM](https://github.com/solopasha/hyprlandRPM) — Hyprland COPR packages for Fedora
-- [lionheartp/Hyprland](https://copr.fedorainfracloud.org/coprs/lionheartp/Hyprland) & [dtutila/hyprland](https://copr.fedorainfracloud.org/coprs/dtutila/hyprland/) — alternative Hyprland COPRs for Fedora 44
-- [whelanh/omarchy](https://copr.fedorainfracloud.org/coprs/whelanh/omarchy/) — Fedora 44 COPR packaging official Omarchy binaries (aether, herdr, ttfx, etc.)
+- [lionheartp/Hyprland](https://copr.fedorainfracloud.org/coprs/lionheartp/Hyprland) — Hyprland COPR packages for Fedora
 - [Tokyo Night](https://github.com/enkia/tokyo-night-vscode-theme) color scheme
 
 ## License

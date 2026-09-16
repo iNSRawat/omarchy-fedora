@@ -21,7 +21,7 @@ STANDALONE_CONFIGS=(starship/starship.toml)
 
 DEFAULT_COPR="lionheartp/Hyprland"
 
-HYPR_PACKAGES=(hyprland hyprlock hypridle xdg-desktop-portal-hyprland hyprpolkitagent)
+HYPR_PACKAGES=(hyprland hyprlock hypridle xdg-desktop-portal-hyprland hyprpolkitagent hyprland-guiutils)
 
 CORE_PACKAGES=(
   waybar rofi-wayland foot starship dunst swaybg
@@ -35,23 +35,12 @@ EXTRA_PACKAGES=(
   curl unzip
 )
 
-OMARCHY_COPR="whelanh/omarchy"
-OMARCHY_PACKAGES=(
-  hyprland-preview-share-picker
-  omacalc
-  omawrite
-  omacut
-  herdr
-  ttfx
-)
-
 # defaults
 ASSUME_YES=0
 DRY_RUN=0
 COPY_MODE=0
 DO_PACKAGES=1
 DO_COPR=1
-DO_OMARCHY_APPS=0
 DO_FONT=1
 DO_SHELL_INIT=1
 COPR="$DEFAULT_COPR"
@@ -97,8 +86,7 @@ Usage: ./install.sh [options]
       --copy           copy configs instead of symlink
       --config-only    skip package install
       --no-copr        don't enable Hyprland COPR
-      --copr <repo>    use a different COPR (default: solopasha/hyprland)
-      --omarchy-apps   install official Omarchy tools (from whelanh/omarchy)
+      --copr <repo>    use a different COPR (default: lionheartp/Hyprland)
       --no-font        skip Nerd Font download
       --no-shell-init  don't touch bashrc/zshrc
   -h, --help           this message
@@ -113,7 +101,6 @@ while (($#)); do
     --config-only)    DO_PACKAGES=0 ;;
     --no-copr)        DO_COPR=0 ;;
     --copr)           shift; COPR="${1:?--copr needs a value}" ;;
-    --omarchy-apps)   DO_OMARCHY_APPS=1 ;;
     --no-font*)       DO_FONT=0 ;;
     --no-shell-init)  DO_SHELL_INIT=0 ;;
     -h|--help)        usage; exit 0 ;;
@@ -196,15 +183,6 @@ install_packages() {
   run "${SUDO[@]}" "$DNF" -y install "${EXTRA_PACKAGES[@]}" \
     || warn "some extras failed (non-critical)"
 
-  if (( DO_OMARCHY_APPS )); then
-    info "enabling Omarchy COPR ($OMARCHY_COPR)"
-    run "${SUDO[@]}" "$DNF" -y copr enable "$OMARCHY_COPR" \
-      || warn "couldn't enable $OMARCHY_COPR"
-
-    info "installing Omarchy apps (share picker, omacalc, etc.)"
-    run "${SUDO[@]}" "$DNF" -y install "${OMARCHY_PACKAGES[@]}" \
-      || warn "some Omarchy apps failed to install (non-critical)"
-  fi
 }
 
 # --- nerd font ---
@@ -364,9 +342,6 @@ if ! (( ASSUME_YES )); then
   echo "  backed up to ~/.config/omarchy-fedora-backup/ first."
   echo ""
   confirm "ready?" || exit 1
-  if confirm "also install official Omarchy apps (share picker, omacalc, etc.)?"; then
-    DO_OMARCHY_APPS=1
-  fi
 fi
 
 enable_copr
