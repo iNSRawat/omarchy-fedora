@@ -23,8 +23,8 @@ Hyprland rice for Fedora 44, inspired by [Omarchy](https://omarchy.com/). Tokyo 
 Needs Fedora 44 (or 41+), sudo, internet.
 
 ```bash
-git clone https://github.com/<you>/omarchy-fedora-style-config.git
-cd omarchy-fedora-style-config
+git clone https://github.com/iNSRawat/omarchy-fedora.git
+cd omarchy-fedora
 ./install.sh
 ```
 
