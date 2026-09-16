@@ -188,11 +188,72 @@ Edit `config/hypr/hypridle.conf` to adjust the timeouts.
 
 ## Uninstall
 
+You can uninstall Omarchy-Fedora either using the automated script or manually step-by-step.
+
+### Option A: Automated Uninstaller
+
+Make the script executable (or run directly with `bash`):
+
 ```bash
+chmod +x uninstall.sh
 ./uninstall.sh
 ```
 
-Removes the symlinks, offers to restore your backed-up configs, and optionally removes packages.
+*(Or run `bash uninstall.sh` if your drive is mounted with `noexec`)*
+
+#### Uninstaller Options
+
+| Command | What it does |
+|---------|-------------|
+| `./uninstall.sh` | Interactive wizard — asks before removing configs, font, and packages |
+| `./uninstall.sh -n` or `--dry-run` | Preview what will be removed without touching anything |
+| `./uninstall.sh -y` | Non-interactive removal of configs, wallpapers, and shell hooks |
+| `./uninstall.sh -p` or `--packages` | Also removes Hyprland RPM packages via DNF |
+| `./uninstall.sh --all` | Full cleanup: configs, wallpapers, font, packages, and disables COPR |
+
+### Option B: Step-by-Step Manual Uninstall
+
+If you prefer to uninstall everything manually without running the script:
+
+**1. Remove the deployed config symlinks**
+```bash
+rm -rf ~/.config/hypr ~/.config/waybar ~/.config/rofi ~/.config/foot ~/.config/dunst ~/.config/starship.toml
+```
+
+**2. Remove wallpapers and helper files**
+```bash
+rm -rf ~/.local/share/omarchy-fedora
+```
+
+**3. Restore your original configs from backup**
+```bash
+LATEST_BACKUP=$(ls -1td ~/.config/omarchy-fedora-backup/* 2>/dev/null | head -1)
+if [ -n "$LATEST_BACKUP" ]; then
+  cp -a "$LATEST_BACKUP"/* ~/.config/
+fi
+```
+
+**4. Remove Starship prompt from your shell RC**
+```bash
+sed -i '/starship/d' ~/.bashrc 2>/dev/null || true
+sed -i '/starship/d' ~/.zshrc 2>/dev/null || true
+```
+
+**5. (Optional) Remove Hyprland packages**
+```bash
+sudo dnf5 remove -y hyprland hyprlock hypridle xdg-desktop-portal-hyprland hyprpolkitagent hyprland-guiutils
+```
+
+**6. (Optional) Disable the COPR repository**
+```bash
+sudo dnf5 copr disable -y lionheartp/Hyprland
+```
+
+**7. (Optional) Remove the downloaded Nerd Font**
+```bash
+rm -rf ~/.local/share/fonts/JetBrainsMonoNerdFont
+fc-cache -f
+```
 
 ## Troubleshooting
 
