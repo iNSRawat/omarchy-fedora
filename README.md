@@ -18,26 +18,55 @@ Hyprland rice for Fedora 44, inspired by [Omarchy](https://omarchy.org/). Tokyo 
 - **Hyprlock + Hypridle** — lock screen (blurred screenshot) and idle management
 - Helper scripts for screenshots, volume/brightness OSD, power menu
 
-## Install
+## Installation Guide
 
-Needs Fedora 44 (or 41+), sudo, internet.
+### Prerequisites
+- Fedora 44 (or 41+) Workstation
+- Active internet connection
+- `sudo` privileges
 
+### Step-by-Step
+
+**1. Clone the repo**
 ```bash
 git clone https://github.com/iNSRawat/omarchy-fedora.git
 cd omarchy-fedora
-chmod +x install.sh
-./install.sh
 ```
 
-This will:
-- Enable the Hyprland COPR repo (`solopasha/hyprland`)
-- Install everything through dnf5
-- Back up your existing `~/.config` stuff before touching anything
-- Symlink configs from this repo into place
-- Grab JetBrainsMono Nerd Font
-- Set up Starship in your bashrc/zshrc
+**2. Make the installer executable**
+```bash
+chmod +x install.sh
+```
 
-Then log out, pick **Hyprland** from the gear menu at GDM, and log back in.
+**3. (Optional) Preview what will happen**
+```bash
+./install.sh --dry-run
+```
+
+**4. Run the installer**
+```bash
+./install.sh
+```
+*(Or `./install.sh -y` to run unattended without prompts)*
+
+What this does automatically:
+- Enables the Hyprland COPR repo (`solopasha/hyprland`)
+- Installs Hyprland, Waybar, Rofi, Foot, Starship, Dunst, and supporting Wayland utilities via `dnf5`
+- Backs up your existing configs to `~/.config/omarchy-fedora-backup/`
+- Symlinks the configs from this repo into `~/.config/`
+- Downloads and installs JetBrainsMono Nerd Font
+- Sets up the Starship prompt in your `~/.bashrc` (or `~/.zshrc`)
+
+**5. Log into Hyprland**
+1. Save any open work and log out of your current session.
+2. At the login screen (GDM), click the **gear icon (⚙️)** in the bottom-right corner.
+3. Select **Hyprland** and log in.
+
+**6. Quick verification**
+- Press `Super + Enter` to launch the Foot terminal.
+- Press `Super + Space` to open the Rofi app launcher.
+- Press `Super + C` for the Omarchy calculator (`omacalc`).
+- Press `Super + Q` to close the focused window.
 
 ### Options
 
