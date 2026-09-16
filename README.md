@@ -1,6 +1,5 @@
 # Omarchy-Fedora
 
-Hyprland rice for Fedora 44, inspired by [Omarchy](https://omarchy.com/). Tokyo Night everywhere, vim-style window nav, minimal and keyboard-driven.
 Hyprland rice for Fedora 44, inspired by [Omarchy](https://omarchy.org/). Tokyo Night everywhere, vim-style window nav, minimal and keyboard-driven.
 
 ![Fedora 44](https://img.shields.io/badge/Fedora-44-blue?logo=fedora)
@@ -47,8 +46,18 @@ Then log out, pick **Hyprland** from the gear menu at GDM, and log back in.
 ./install.sh --copy          # copy instead of symlink
 ./install.sh --config-only   # skip package install
 ./install.sh --no-copr       # don't add the COPR
+./install.sh --copr dtutila/hyprland # use an alternative COPR
 ./install.sh --no-font       # skip nerd font download
 ./install.sh --no-shell-init # don't touch bashrc/zshrc
+```
+
+### Optional: Omarchy Companion Binaries
+
+To install the first-party Omarchy utilities (`aether`, `ttfx`, `herdr`, `hyprland-preview-share-picker`, etc.) on Fedora 44:
+
+```bash
+sudo dnf copr enable whelanh/omarchy -y
+sudo dnf install -y aether cliamp herdr hyprland-preview-share-picker omacalc omacut omawrite tensaku try ttfx
 ```
 
 ## Keybindings
@@ -164,6 +173,9 @@ Removes the symlinks, offers to restore your backed-up configs, and optionally r
 
 - [Omarchy](https://omarchy.org/) for the original vision
 - [Hyprland](https://hypr.land/)
+- [solopasha/hyprlandRPM](https://github.com/solopasha/hyprlandRPM) — Hyprland COPR packages for Fedora
+- [lionheartp/Hyprland](https://copr.fedorainfracloud.org/coprs/lionheartp/Hyprland) & [dtutila/hyprland](https://copr.fedorainfracloud.org/coprs/dtutila/hyprland/) — alternative Hyprland COPRs for Fedora 44
+- [whelanh/omarchy](https://copr.fedorainfracloud.org/coprs/whelanh/omarchy/) — Fedora 44 COPR packaging official Omarchy binaries (aether, herdr, ttfx, etc.)
 - [Tokyo Night](https://github.com/enkia/tokyo-night-vscode-theme) color scheme
 
 ## License
