@@ -129,7 +129,8 @@ Volume keys, brightness keys, and Print Screen all work. Print does region scree
 ```
 config/
   hypr/
-    hyprland.conf       # main config
+    hyprland.lua        # modern main config (Hyprland 0.55+ / 0.56+ / 0.57)
+    hyprland.conf       # legacy fallback config
     hyprlock.conf       # lock screen
     hypridle.conf       # idle timeouts
     xdph.conf           # screen sharing picker config
@@ -153,14 +154,20 @@ scripts/
 
 ## Customization
 
-**Wallpaper** — drop an image in `wallpapers/` and change the swaybg line in hyprland.conf:
-```ini
-exec-once = swaybg -i ~/path/to/wallpaper.jpg -m fill
+**Wallpaper** — drop an image in `wallpapers/` and update the swaybg line in `hyprland.lua` (or `hyprland.conf`):
+```lua
+-- in config/hypr/hyprland.lua:
+hl.exec_cmd("swaybg -i " .. home .. "/.local/share/omarchy-fedora/wallpapers/your-wallpaper.jpg -m fill")
 ```
 
-**Monitors** — edit the `monitor` line:
-```ini
-monitor = DP-1, 2560x1440@165, 0x0, 1.25
+**Monitors** — edit the `hl.monitor` block in `hyprland.lua`:
+```lua
+hl.monitor({
+    output   = "DP-1",
+    mode     = "2560x1440@165",
+    position = "0x0",
+    scale    = 1.25,
+})
 ```
 
 **Colors** — everything uses Tokyo Night. The main values:
